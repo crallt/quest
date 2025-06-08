@@ -41,5 +41,13 @@ def quiz_topic(topic, q):
                            total=len(questions),
                            topic=topic)
 
+from flask import request
+
+@app.before_request
+def log_request_info():
+    ip = request.remote_addr
+    path = request.path
+    print(f"[👀] IP: {ip} → {path}")
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
