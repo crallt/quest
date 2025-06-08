@@ -1,0 +1,9 @@
+https://fly.io/
+
+Railway.app — даёт $5/mo бесплатных кредитов
+
+Fly.io — бесплатный тариф, можно держать Flask-проект онлайн
+
+Deta.space — удобный бесплатный хостинг Flask-приложений
+
+[VPS (Hetzner, Timeweb Cloud, Yandex Cloud)] — полноценный сервер за $3–4/мес
