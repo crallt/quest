@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Выбор темы</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    .centered {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .box {
+      background: #f9f9f9;
+      padding: 2em;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .box ul {
+      list-style: none;
+      padding: 0;
+    }
+    .box li {
+      margin: 10px 0;
+    }
+    .box a {
+      text-decoration: none;
+      color: #007bff;
+      font-size: 1.2em;
+    }
+    .box a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="centered">
+    <div class="box">
+      <h1>Выберите тему</h1>
+      <ul>
+        {% for topic in topics %}
+          <li><a href="{{ url_for('quiz_topic', topic=topic, q=0) }}">{{ topic }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

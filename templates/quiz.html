@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Тест</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    .wrapper {
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+    .quiz-container {
+      display: flex;
+      background: #f9f9f9;
+      padding: 2em;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .sidebar {
+      margin-right: 2em;
+      padding-right: 1em;
+      border-right: 1px solid #ccc;
+    }
+    .sidebar h3 {
+      margin-top: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .sidebar li {
+      margin-bottom: 5px;
+    }
+    .sidebar a {
+      text-decoration: none;
+      color: #007bff;
+    }
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+    .quiz-box {
+      text-align: left;
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="quiz-container">
+
+      <!-- Сайдбар слева -->
+      <div class="sidebar">
+        <h3>Вопросы</h3>
+        <ul>
+          {% for i in range(total) %}
+            <li>
+              <a href="{{ url_for('quiz_topic', topic=topic, q=i) }}">Вопрос {{ i + 1 }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <!-- Центральный блок -->
+      <div class="quiz-box">
+        <h1>Вопрос {{ num + 1 }} из {{ total }}</h1>
+        <form method="post">
+          <p>{{ question['question'] }}</p>
+          {% for opt in question['options'] %}
+            <label><input type="radio" name="answer" value="{{ opt }}" required> {{ opt }}</label><br>
+          {% endfor %}
+          <br>
+          <input type="submit" value="Ответить">
+        </form>
+
+        {% if result %}
+          <p><strong>{{ result }}</strong></p>
+          {% if num + 1 < total %}
+            <a href="{{ url_for('quiz_topic', topic=topic, q=num + 1) }}">Следующий вопрос</a>
+          {% else %}
+            <a href="{{ url_for('quiz_topic', topic=topic, q=total) }}">Завершить</a>
+          {% endif %}
+        {% endif %}
+
+        <br><br>
+        <a href="{{ url_for('home') }}">← Назад к выбору темы</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
