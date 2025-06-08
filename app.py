@@ -43,11 +43,14 @@ def quiz_topic(topic, q):
 
 from flask import request
 
+import logging
+
+logging.basicConfig(level=logging.INFO)
+
 @app.before_request
 def log_request_info():
     ip = request.headers.get('X-Forwarded-For', request.remote_addr)
     path = request.path
-    print(f"[👀] IP: {ip} → {path}")
-
+    logging.info(f"[👀] IP: {ip} → {path}")
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
