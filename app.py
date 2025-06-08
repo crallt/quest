@@ -45,7 +45,7 @@ from flask import request
 
 @app.before_request
 def log_request_info():
-    ip = request.remote_addr
+    ip = request.headers.get('X-Forwarded-For', request.remote_addr)
     path = request.path
     print(f"[👀] IP: {ip} → {path}")
 
